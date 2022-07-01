@@ -1,0 +1,21 @@
+{
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "no-duplicate-imports": "error",
+    "no-console": ["warn", { "allow": ["warn", "error", "info", "debug"] }],
+    "no-var": "error",
+    "default-case": ["warn", { "commentPattern": "^skip\\sdefault" }],
+    "max-params": ["error", { "max": 4 }],
+    "max-depth": ["error", { "max": 3 }]
+  },
+  "overrides": [
+    {
+      "files": ["src/pages/**/*"],
+      "rules": {
+        "consistent-default-export-name/default-export-match-filename": "off"
+      }
+    }
+  ]
+}
