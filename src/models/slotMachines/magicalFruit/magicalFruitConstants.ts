@@ -7,7 +7,7 @@ export const MAGICAL_FRUIT_SETTINGS = [
   {
     name: '設定１',
     spec: 95.9,
-    description: '一番出率の低い、理論値では回せば回すほど負ける設定',
+    description: '一番出率が低い、理論値では回せば回すほど負ける設定',
   },
   {
     name: '設定４',
@@ -17,21 +17,21 @@ export const MAGICAL_FRUIT_SETTINGS = [
   {
     name: '設定６',
     spec: 107.8,
-    description: '通常の設定の中では一番出率が高い、バランスの取れた設定',
+    description: '通常の設定の中では一番出率が高い',
   },
   {
     name: 'C',
     spec: 111.3,
-    description: 'JACK POTが全設定で一番引きやすい、安定して出る設定',
+    description: '「JACK POT」が全設定で一番引きやすい、安定して出やすい設定',
   },
   {
     name: 'BOMB',
     spec: 111.5,
-    description: 'SUPER JACKPOTが全設定で一番引きやすいがコイン持ちが悪いため荒い挙動をする設定',
+    description: '「SUPER JACKPOT」が全設定で一番引きやすいがコイン持ちが悪いため、荒い挙動になりやすい設定',
   },
   {
     name: 'EXTRA',
     spec: 143.8,
-    description: '全設定で一番出率の高い設定、SUPER JACKPOTとJACKPOTともに引きやすいエキストラ設定',
+    description: '全設定で一番出率が高い設定、「SUPER JACKPOT」と「JACKPOT」が両方引きやすいエキストラ設定',
   },
 ] as const;
