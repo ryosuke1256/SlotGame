@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
-import { SlotMachine } from '~/models/slotMachines';
+import { SlotMachine, SlotMachineAction } from '~/models/slotMachines';
 import { MAGICAL_FRUIT_FLAGS } from '~/models/slotMachines/magicalFruit';
-import { getAction } from '~/utils/model';
 import { useSlotMachine } from './useSlotMachine';
+import { isBetweenNumber } from '~/utils/number';
 
 export const useMagicalFruit = (magicalFruitModel: SlotMachine) => {
   const [superJackpotTimes, setSuperJackpotTimes] = useState<number>(0);
@@ -38,6 +38,14 @@ export const useMagicalFruit = (magicalFruitModel: SlotMachine) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [randomNumberResult]);
 
+  const getAction = useCallback(<T extends number>(slotMachine: SlotMachine, randomNumberResult: number, settingNumber: T): SlotMachineAction => {
+    const action = slotMachine.actions.find((action: SlotMachineAction) => {
+      if (isBetweenNumber(randomNumberResult, action.range[settingNumber][0], action.range[settingNumber][1])) return action.flag;
+    });
+    if (!action) throw new Error(`"${randomNumberResult}" could not get the action`);
+    return action;
+  }, []);
+
   const result = useCallback(() => {
     if (!randomNumberResult) return;
     const action = getAction(magicalFruitModel, randomNumberResult, settingNumber);
@@ -48,7 +56,7 @@ export const useMagicalFruit = (magicalFruitModel: SlotMachine) => {
     // TODO:要素数が多くなると遅くなる、stateを使わずにarray.push使うとか？
     setResultHistory((prevResultHistory) => [...prevResultHistory, { date: new Date(), diffMedal: diffMedal + action.payout }]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [diffMedal, magicalFruitModel, randomNumberResult, settingNumber]);
+  }, [diffMedal, getAction, magicalFruitModel, randomNumberResult, settingNumber]);
 
   // 成立役を取得する
   const getSatisfiedHand = useCallback((): string | undefined => {
@@ -59,7 +67,7 @@ export const useMagicalFruit = (magicalFruitModel: SlotMachine) => {
     } catch (e: any) {
       console.error(e.message);
     }
-  }, [magicalFruitModel, randomNumberResult, settingNumber]);
+  }, [magicalFruitModel, getAction, randomNumberResult, settingNumber]);
 
   const clearAll = useCallback(() => {
     clearSlotMachineData();
