@@ -9,7 +9,6 @@ export const useMagicalFruit = (magicalFruitModel: SlotMachine) => {
   const [jackpotTimes, setJackpotTimes] = useState<number>(0);
   const [melonTimes, setMelonTimes] = useState<number>(0);
 
-  // TODO:書き方おかしいかも、useSlotMochineのプロパティもリターンしてる
   const {
     changeModel,
     changeSettingNumber,
@@ -67,7 +66,7 @@ export const useMagicalFruit = (magicalFruitModel: SlotMachine) => {
     } catch (e: any) {
       console.error(e.message);
     }
-  }, [magicalFruitModel, getAction, randomNumberResult, settingNumber]);
+  }, [magicalFruitModel,getAction, randomNumberResult, settingNumber]);
 
   const clearAll = useCallback(() => {
     clearSlotMachineData();

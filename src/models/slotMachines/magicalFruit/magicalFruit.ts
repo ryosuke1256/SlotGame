@@ -81,7 +81,6 @@ export const magicalFruit: MagicalFruit = {
         [13000, 16999],
         [23356, 25200],
       ],
-      // FIXME
       probability: [38.5, 38.5, 35.6, 35.6, 35.6, 35.6],
       payout: 2,
     },
