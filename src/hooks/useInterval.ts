@@ -1,4 +1,3 @@
-// import { useEffect } from 'react';
 import { useEffect, useRef } from 'react';
 
 export const useInterval = (callback: () => unknown, delay?: number | null) => {

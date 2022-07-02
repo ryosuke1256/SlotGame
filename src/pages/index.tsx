@@ -139,7 +139,6 @@ const Home: NextPage = () => {
       {/* TODO:3000枚以上でレインポーカラーやる？*/}
       {isShowDataCounter && (
         <section className={clsx('flex bg-black text-rose-600 p-10 rounded-2xl', section)}>
-          {/* <div className={clsx('flex text-opacity-0 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-10 rounded-2xl', section)}> */}
           <div className='flex flex-col grow-0'>
             <p className='text-lg'>総回転数:{resultHistory.length}回転</p>
           </div>
@@ -163,7 +162,7 @@ const Home: NextPage = () => {
           className={clsx('mt-2 shadow', !canGame ? 'bg-gray-500' : 'bg-opacity-30')}
           onClick={() => {
             if (isAuto) window.alert('オートプレイ中です');
-            if (canGame || isAuto) return null;
+            if (canGame || isAuto) return;
             betMax();
           }}
         >
@@ -173,7 +172,7 @@ const Home: NextPage = () => {
           className={clsx('ml-10 shadow', canGame ? 'bg-gray-500' : 'bg-opacity-30')}
           onClick={() => {
             if (isAuto) window.alert('オートプレイ中です');
-            if (!canGame || isAuto) return null;
+            if (!canGame || isAuto) return;
             playGame();
           }}
         >
